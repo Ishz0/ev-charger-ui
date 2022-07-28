@@ -1,0 +1,98 @@
+<div class="container mt-5">
+    <div class="card text-center" style="padding: 20px; color: red;">
+        <div class="container">
+            <div class="card mt-5" style="align-items: center;">
+              <h1>Charger Dashboard</h1>
+            </div>
+          
+            <div class="card mt-5" style="padding: 20px;">
+              <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+                <div class="form-group">
+                  <label for="name">Charger Name :</label>
+                  <input type="text" #name (ngModel)="name" name="name" id="name" class="form-control" placeholder="Charger Name">
+                </div>
+                <div class="form-group">
+                  <label for="level">Charger level :</label>
+                  <input type="text" #level (ngModel)="level" name="level" id="level" class="form-control"
+                    placeholder="Charger Level">
+                </div>
+                <div class="form-group">
+                  <label for="rateKw">Charger Rate :</label>
+                  <input type="number" #percentage (ngModel)="rateKw" name="rateKw" id="rateKw" class="form-control"
+                    placeholder="Charger rate in Kw">
+                </div>
+                <div class="form-group">
+                  <input type="submit" value="Register" class="btn btn-primary w-100">
+                </div>
+              </form>
+            </div>
+          
+            <div class="mt-5">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Id number</th>
+                    <th>Name</th>
+                    <th>Level</th>
+                    <th>Rate in Kw</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody class="tbody">
+                  <tr *ngFor="let charger of chargerDetails">
+                    <td>{{charger.id}}</td>
+                    <td>{{charger.name}}</td>
+                    <td>{{charger.level}}</td>
+                    <td>{{charger.rateKw}}</td>
+                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                        (click)="edit(charger)">Edit</button></td>
+                    <td><button type="button" class="btn btn-danger" (click)="deleteCharger(charger)">Delete</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Update Charger</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form #updateForm="ngForm" (ngSubmit)="updateCharger()">
+                    <div class="form-group">
+                      <label for="id">Charger Rollnumber :</label>
+                      <input type="text" disabled #id [(ngModel)]="chargerToUpdate.id" name="id" id="id"
+                        class="form-control" placeholder="Charger Id number">
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Charger Name :</label>
+                      <input type="text" #name [(ngModel)]="chargerToUpdate.name" name="name" id="name" class="form-control"
+                        placeholder="Charger Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="level">Charger level :</label>
+                      <input type="text" #level [(ngModel)]="chargerToUpdate.level" name="level" id="level"
+                        class="form-control" placeholder="Charger Level">
+                    </div>
+                    <div class="form-group">
+                      <label for="rateKw">Charger rate :</label>
+                      <input type="number" #rateKw [(ngModel)]="chargerToUpdate.rateKw" name="rateKw" id="rateKw"
+                        class="form-control" placeholder="Charger Rate in Kw">
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" value="Update" class="btn btn-primary w-100">
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
